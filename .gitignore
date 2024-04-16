@@ -26,3 +26,4 @@
 /.vs/
 /Packages/packages-lock.json
 .DS_Store
+.idea/
