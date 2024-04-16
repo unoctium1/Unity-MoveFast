@@ -57,33 +57,6 @@ namespace Oculus.Interaction.MoveFast
 
         private IHand BestHand => Hands.Find(x => x.IsConnected) ?? NullHand.instance;
 
-        public bool TryGetAspect<TComponent>(out TComponent foundComponent) where TComponent : class
-        {
-            for (int i = 0; i < _aspects.Length; i++)
-            {
-                foundComponent = _aspects[i] as TComponent;
-                if (foundComponent != null)
-                {
-                    return true;
-                }
-            }
-
-            if (BestHand.TryGetAspect(out foundComponent))
-            {
-                return true;
-            }
-
-            for (int i = 0; i < Hands.Count; i++)
-            {
-                if (Hands[i] != BestHand && Hands[i].TryGetAspect(out foundComponent))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         public event Action WhenHandUpdated
         {
             add { _whenHandUpdated += value; }
@@ -97,10 +70,7 @@ namespace Oculus.Interaction.MoveFast
         public float Scale => BestHand.Scale;
         public bool IsPointerPoseValid => BestHand.IsPointerPoseValid;
         public bool IsTrackedDataValid => BestHand.IsTrackedDataValid;
-        public bool IsCenterEyePoseValid => BestHand.IsCenterEyePoseValid;
-        public Transform TrackingToWorldSpace => BestHand.TrackingToWorldSpace;
         public int CurrentDataVersion => BestHand.CurrentDataVersion;
-        public bool GetCenterEyePose(out Pose pose) => BestHand.GetCenterEyePose(out pose);
         public bool GetFingerIsHighConfidence(HandFinger finger) => BestHand.GetFingerIsHighConfidence(finger);
         public bool GetFingerIsPinching(HandFinger finger) => BestHand.GetFingerIsPinching(finger);
         public float GetFingerPinchStrength(HandFinger finger) => BestHand.GetFingerPinchStrength(finger);
@@ -148,8 +118,6 @@ namespace Oculus.Interaction.MoveFast
         public float Scale => hand.Scale;
         public bool IsPointerPoseValid => hand.IsPointerPoseValid;
         public bool IsTrackedDataValid => hand.IsTrackedDataValid;
-        public bool IsCenterEyePoseValid => hand.IsCenterEyePoseValid;
-        public Transform TrackingToWorldSpace => hand.TrackingToWorldSpace;
         public int CurrentDataVersion => hand.CurrentDataVersion;
 
         public event Action WhenHandUpdated
@@ -170,8 +138,6 @@ namespace Oculus.Interaction.MoveFast
         public bool GetFingerIsHighConfidence(HandFinger finger) => hand.GetFingerIsHighConfidence(finger);
         public float GetFingerPinchStrength(HandFinger finger) => hand.GetFingerPinchStrength(finger);
         public bool GetRootPose(out Pose pose) => hand.GetRootPose(out pose);
-        public bool GetCenterEyePose(out Pose pose) => hand.GetCenterEyePose(out pose);
-        public bool TryGetAspect<TAspect>(out TAspect aspect) where TAspect : class => hand.TryGetAspect(out aspect);
     }
 
 #if UNITY_EDITOR

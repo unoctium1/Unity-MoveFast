@@ -43,6 +43,7 @@ namespace Oculus.Interaction.MoveFast
         public bool IsMatch(IHand hand)
         {
             bool transformOK = true;
+            
             if (hand.TryGetAspect(out TransformFeatureStateProvider orientationRecognizer))
             {
                 transformOK = orientationRecognizer.IsMatch(_transformConfig, _transformFeatureConfigs);
@@ -93,10 +94,7 @@ namespace Oculus.Interaction.MoveFast
 
         public static bool IsMatch(this TransformFeatureStateProvider orientationRecognizer, TransformConfig transformConfig, TransformFeatureConfigList transformFeatureConfigs)
         {
-            if (!orientationRecognizer.IsRegistered(transformConfig))
-            {
-                orientationRecognizer.RegisterNewConfig(transformConfig);
-            }
+            orientationRecognizer.RegisterConfig(transformConfig);
 
             var configs = transformFeatureConfigs.Values;
 
