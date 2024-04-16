@@ -21,7 +21,6 @@
 using Oculus.Interaction;
 using Oculus.Interaction.MoveFast;
 using UnityEngine;
-using Oculus.Interaction.MoveFast;
 
 public class HandPoseActiveState : MonoBehaviour, IActiveState
 {
