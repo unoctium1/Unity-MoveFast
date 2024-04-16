@@ -71,6 +71,8 @@ namespace Oculus.Interaction.MoveFast
 
         private int AddScore()
         {
+            return 0;
+            /*
             if (_includeVelocity && _hitDetector.LastHand.TryGetAspect<RawHandVelocity>(out var velocityCalculator))
             {
                 // record the speed of the hit, to display on the results screen
@@ -84,7 +86,7 @@ namespace Oculus.Interaction.MoveFast
             else
             {
                 return _score.AddScore();
-            }
+            }*/
         }
     }
 }

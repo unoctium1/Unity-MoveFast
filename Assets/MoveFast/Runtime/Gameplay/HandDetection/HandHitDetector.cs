@@ -94,6 +94,7 @@ namespace Oculus.Interaction.MoveFast
         /// <param name="hand"></param>
         private void TutorialHit(IHand hand)
         {
+            /*
             var hasPoseList = hand.TryGetAspect<HandPoseActiveStateList>(out var handPoseList);
 
             var exclusive = _poseName != "block"; //HACK
@@ -105,7 +106,7 @@ namespace Oculus.Interaction.MoveFast
             {
                 onHit?.Invoke();
                 ResolveHit(hand, true);
-            }
+            }*/
         }
 
         /// <summary>
@@ -114,6 +115,7 @@ namespace Oculus.Interaction.MoveFast
         /// <param name="hand"></param>
         private void IngameHit(IHand hand)
         {
+            /*
             onHit?.Invoke();
 
             bool hasPoseList = hand.TryGetAspect<HandPoseActiveStateList>(out var handPoseList);
@@ -143,7 +145,7 @@ namespace Oculus.Interaction.MoveFast
                     }
                 }
                 ResolveHit(hand, false);
-            }
+            }*/
         }
 
         void ResolveHit(IHand hand, bool poseCorrect)

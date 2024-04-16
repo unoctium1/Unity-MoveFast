@@ -44,6 +44,7 @@ namespace Oculus.Interaction.MoveFast
         {
             bool transformOK = true;
             
+            /*
             if (hand.TryGetAspect(out TransformFeatureStateProvider orientationRecognizer))
             {
                 transformOK = orientationRecognizer.IsMatch(_transformConfig, _transformFeatureConfigs);
@@ -53,9 +54,9 @@ namespace Oculus.Interaction.MoveFast
             if (_handShape && hand.TryGetAspect(out IFingerFeatureStateProvider shapeRecognizer))
             {
                 shapeOK = shapeRecognizer.IsMatch(_handShape);
-            }
+            }*/
 
-            return transformOK && shapeOK;
+            return false; //transformOK && shapeOK;
         }
 
         void ISerializationCallbackReceiver.OnAfterDeserialize()
