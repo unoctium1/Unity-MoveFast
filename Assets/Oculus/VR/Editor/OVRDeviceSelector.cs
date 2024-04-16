@@ -40,9 +40,10 @@ public class OVRDeviceSelector
         get
         {
 #if PRIORITIZE_OCULUS_XR_SETTINGS
-            OculusSettings settings;
-            UnityEditor.EditorBuildSettings.TryGetConfigObject<OculusSettings>("Unity.XR.Oculus.Settings", out settings);
-            return settings.TargetQuest;
+            //OculusSettings settings;
+            //UnityEditor.EditorBuildSettings.TryGetConfigObject<OculusSettings>("Unity.XR.Oculus.Settings", out settings);
+            //return settings.TargetQuest;
+            return false;
 #else
             OVRProjectConfig projectConfig = OVRProjectConfig.GetProjectConfig();
             return projectConfig.targetDeviceTypes.Contains(OVRProjectConfig.DeviceType.Quest);
@@ -55,9 +56,10 @@ public class OVRDeviceSelector
         get
         {
 #if PRIORITIZE_OCULUS_XR_SETTINGS
-            OculusSettings settings;
-            UnityEditor.EditorBuildSettings.TryGetConfigObject<OculusSettings>("Unity.XR.Oculus.Settings", out settings);
-            return settings.TargetQuest2;
+            //OculusSettings settings;
+            //UnityEditor.EditorBuildSettings.TryGetConfigObject<OculusSettings>("Unity.XR.Oculus.Settings", out settings);
+            //return settings.TargetQuest2;
+            return true;
 #else
             OVRProjectConfig projectConfig = OVRProjectConfig.GetProjectConfig();
             return projectConfig.targetDeviceTypes.Contains(OVRProjectConfig.DeviceType.Quest2);
@@ -71,9 +73,10 @@ public class OVRDeviceSelector
         {
 #if PRIORITIZE_OCULUS_XR_SETTINGS
 #if USING_QUEST_PRO_COMPATIBLE_OCULUS_XR_PLUGIN_VERSION
-            OculusSettings settings;
-            UnityEditor.EditorBuildSettings.TryGetConfigObject<OculusSettings>("Unity.XR.Oculus.Settings", out settings);
-            return settings.TargetQuestPro;
+            //OculusSettings settings;
+            //UnityEditor.EditorBuildSettings.TryGetConfigObject<OculusSettings>("Unity.XR.Oculus.Settings", out settings);
+            //return settings.TargetQuestPro;
+return false;
 #else
             return false;
 #endif
