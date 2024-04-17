@@ -77,7 +77,7 @@ namespace Oculus.Interaction.MoveFast
 
             _lastHitTime = Time.time;
             LastHand = hand;
-
+            
             if (TutorialMode)
             {
                 TutorialHit(hand);
@@ -94,8 +94,8 @@ namespace Oculus.Interaction.MoveFast
         /// <param name="hand"></param>
         private void TutorialHit(IHand hand)
         {
-            /*
-            var hasPoseList = hand.TryGetAspect<HandPoseActiveStateList>(out var handPoseList);
+            var hasPoseList = hand.IsTrackedDataValid;
+            var handPoseList = Manager.GetStateList(hand.Handedness);
 
             var exclusive = _poseName != "block"; //HACK
             var activeCount = hasPoseList && exclusive ? handPoseList.ActiveCount() : 1;
@@ -106,7 +106,7 @@ namespace Oculus.Interaction.MoveFast
             {
                 onHit?.Invoke();
                 ResolveHit(hand, true);
-            }*/
+            }
         }
 
         /// <summary>
@@ -115,10 +115,10 @@ namespace Oculus.Interaction.MoveFast
         /// <param name="hand"></param>
         private void IngameHit(IHand hand)
         {
-            /*
             onHit?.Invoke();
-
-            bool hasPoseList = hand.TryGetAspect<HandPoseActiveStateList>(out var handPoseList);
+            
+            var hasPoseList = hand.IsTrackedDataValid;
+            var handPoseList = Manager.GetStateList(hand.Handedness);
 
             // hand poses are not available, probably a controller, just say it was posed right
             if (!hasPoseList)
@@ -145,7 +145,7 @@ namespace Oculus.Interaction.MoveFast
                     }
                 }
                 ResolveHit(hand, false);
-            }*/
+            }
         }
 
         void ResolveHit(IHand hand, bool poseCorrect)

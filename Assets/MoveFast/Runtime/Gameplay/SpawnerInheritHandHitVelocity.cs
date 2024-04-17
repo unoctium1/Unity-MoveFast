@@ -36,8 +36,8 @@ namespace Oculus.Interaction.MoveFast
 
         public void Modify(GameObject instance)
         {
-            /*
-            if (!_hitDetector.LastHand.TryGetAspect<RawHandVelocity>(out var velocityCalculator))
+            var velocityCalculator = Manager.GetRawHandVelocity(_hitDetector.LastHand.Handedness);
+            if (!velocityCalculator)
             {
                 return;
             }
@@ -52,7 +52,7 @@ namespace Oculus.Interaction.MoveFast
             if (_orientation)
             {
                 instance.transform.rotation = Quaternion.LookRotation(velocity.LinearVelocity);
-            }*/
+            }
         }
     }
 }

@@ -38,9 +38,9 @@ namespace Oculus.Interaction.MoveFast
         public readonly List<IHand> Hands = new List<IHand>();
 
         [SerializeField]
-        private List<TransformFeatureStateProvider> _orientationRecognizers = new List<TransformFeatureStateProvider>();
+        private TransformFeatureStateProvider _orientationRecognizer;
         [SerializeField]
-        private List<FingerFeatureStateProvider> _shapeRecognizers = new List<FingerFeatureStateProvider>();
+        private FingerFeatureStateProvider _shapeRecognizer;
         
 
         Action _whenHandUpdated;
@@ -88,8 +88,8 @@ namespace Oculus.Interaction.MoveFast
         public bool GetPointerPose(out Pose pose) => BestHand.GetPointerPose(out pose);
         public bool GetRootPose(out Pose pose) => BestHand.GetRootPose(out pose);
 
-        public TransformFeatureStateProvider OrientationRecognizer => _orientationRecognizers[Hands.IndexOf(BestHand)];
-        public FingerFeatureStateProvider ShapeRecognizer => _shapeRecognizers[Hands.IndexOf(BestHand)];
+        public TransformFeatureStateProvider OrientationRecognizer => _orientationRecognizer;
+        public FingerFeatureStateProvider ShapeRecognizer => _shapeRecognizer;
     }
 
     /// <summary>

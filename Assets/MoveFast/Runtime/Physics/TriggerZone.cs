@@ -108,7 +108,7 @@ namespace Oculus.Interaction.MoveFast
 
             _inZone.TryGetValue(comp, out int v);
             _inZone[comp] = v + 1;
-
+            
             if (v == 0)
             {
                 WhenAdded?.Invoke(comp);

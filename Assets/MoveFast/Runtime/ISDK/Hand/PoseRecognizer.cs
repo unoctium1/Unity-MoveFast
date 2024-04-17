@@ -40,9 +40,11 @@ namespace Oculus.Interaction.MoveFast
         [SerializeField, Optional]
         private ShapeRecognizer _handShape;
 
+        private bool hasRegisteredOrientation = false;
+
         public bool IsMatch(CompoundHandRef hand)
         {
-            bool transformOk = hand.OrientationRecognizer.IsMatch(_transformConfig, _transformFeatureConfigs);
+            bool transformOk = hand.OrientationRecognizer.IsMatch(_transformConfig, _transformFeatureConfigs, ref hasRegisteredOrientation);
 
             bool shapeOk = true;
             if (_handShape && hand.ShapeRecognizer)
@@ -87,9 +89,13 @@ namespace Oculus.Interaction.MoveFast
             return true;
         }
 
-        public static bool IsMatch(this TransformFeatureStateProvider orientationRecognizer, TransformConfig transformConfig, TransformFeatureConfigList transformFeatureConfigs)
+        public static bool IsMatch(this TransformFeatureStateProvider orientationRecognizer, TransformConfig transformConfig, TransformFeatureConfigList transformFeatureConfigs, ref bool hasRegistered)
         {
-            orientationRecognizer.RegisterConfig(transformConfig);
+            if (!hasRegistered)
+            {
+                orientationRecognizer.RegisterConfig(transformConfig);
+                hasRegistered = true;
+            }
 
             var configs = transformFeatureConfigs.Values;
 
