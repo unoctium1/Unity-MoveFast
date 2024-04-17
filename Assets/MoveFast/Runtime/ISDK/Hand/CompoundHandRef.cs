@@ -21,6 +21,7 @@
 using Oculus.Interaction.Input;
 using System;
 using System.Collections.Generic;
+using Oculus.Interaction.PoseDetection;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -37,7 +38,10 @@ namespace Oculus.Interaction.MoveFast
         public readonly List<IHand> Hands = new List<IHand>();
 
         [SerializeField]
-        private Component[] _aspects = new Component[0];
+        private List<TransformFeatureStateProvider> _orientationRecognizers = new List<TransformFeatureStateProvider>();
+        [SerializeField]
+        private List<FingerFeatureStateProvider> _shapeRecognizers = new List<FingerFeatureStateProvider>();
+        
 
         Action _whenHandUpdated;
 
@@ -83,6 +87,9 @@ namespace Oculus.Interaction.MoveFast
         public bool GetPalmPoseLocal(out Pose pose) => BestHand.GetPalmPoseLocal(out pose);
         public bool GetPointerPose(out Pose pose) => BestHand.GetPointerPose(out pose);
         public bool GetRootPose(out Pose pose) => BestHand.GetRootPose(out pose);
+
+        public TransformFeatureStateProvider OrientationRecognizer => _orientationRecognizers[Hands.IndexOf(BestHand)];
+        public FingerFeatureStateProvider ShapeRecognizer => _shapeRecognizers[Hands.IndexOf(BestHand)];
     }
 
     /// <summary>

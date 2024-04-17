@@ -40,23 +40,17 @@ namespace Oculus.Interaction.MoveFast
         [SerializeField, Optional]
         private ShapeRecognizer _handShape;
 
-        public bool IsMatch(IHand hand)
+        public bool IsMatch(CompoundHandRef hand)
         {
-            bool transformOK = true;
-            
-            /*
-            if (hand.TryGetAspect(out TransformFeatureStateProvider orientationRecognizer))
+            bool transformOk = hand.OrientationRecognizer.IsMatch(_transformConfig, _transformFeatureConfigs);
+
+            bool shapeOk = true;
+            if (_handShape && hand.ShapeRecognizer)
             {
-                transformOK = orientationRecognizer.IsMatch(_transformConfig, _transformFeatureConfigs);
+                shapeOk = hand.ShapeRecognizer.IsMatch(_handShape);
             }
 
-            bool shapeOK = true;
-            if (_handShape && hand.TryGetAspect(out IFingerFeatureStateProvider shapeRecognizer))
-            {
-                shapeOK = shapeRecognizer.IsMatch(_handShape);
-            }*/
-
-            return false; //transformOK && shapeOK;
+            return transformOk && shapeOk;
         }
 
         void ISerializationCallbackReceiver.OnAfterDeserialize()

@@ -25,7 +25,7 @@ using UnityEngine;
 public class HandPoseActiveState : MonoBehaviour, IActiveState
 {
     [SerializeField]
-    IHandReference _hand;
+    CompoundHandRef _hand;
 
     [SerializeField]
     PoseRecognizer _poseRecognizer;
